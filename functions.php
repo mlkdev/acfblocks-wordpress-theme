@@ -33,8 +33,6 @@
 		return false;
 	}, 10, 2 );
 
-	// Foundation front-end...
-
 	wp_register_style( 'theme', get_stylesheet_directory_uri().'/style.css' );
 	wp_enqueue_style( 'theme' );
 
