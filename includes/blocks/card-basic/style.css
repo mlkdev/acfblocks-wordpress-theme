@@ -1,0 +1,96 @@
+@media (min-width: 0px) {
+
+	.block.card-basic {
+		padding: 16px;
+		width: 100%;
+	}
+
+	/* Padding Size Config */
+
+	.block.card-basic, .block.card-basic.--pad-size { padding: 0; }
+	.block.card-basic.--pad-size-half { padding: 8px; }
+	.block.card-basic.--pad-size-full { padding: 16px; }
+
+	/* Corner Radius Config */
+
+	.block.card-basic.--corner-radius { border-radius: 0; }
+	.block.card-basic.--corner-radius-half { border-radius: 8px; }
+	.block.card-basic.--corner-radius-full { border-radius: 16px; }
+
+}
+@media (min-width: 640px) {
+
+	.block.card-basic {
+		padding: 24px;
+	}
+
+	/* Padding Size Config */
+
+	.block.card-basic, .block.card-basic.--pad-size { padding: 0; }
+	.block.card-basic.--pad-size-half { padding: 12px; }
+	.block.card-basic.--pad-size-full { padding: 24px; }
+
+	/* Corner Radius Config */
+
+	.block.card-basic.--corner-radius { border-radius: 0; }
+	.block.card-basic.--corner-radius-half { border-radius: 12px; }
+	.block.card-basic.--corner-radius-full { border-radius: 24px; }
+
+}
+@media (min-width: 960px) {
+
+	.block.card-basic {
+		padding: 32px;
+	}
+
+	/* Padding Size Config */
+
+	.block.card-basic, .block.card-basic.--pad-size { padding: 0; }
+	.block.card-basic.--pad-size-half { padding: 16px; }
+	.block.card-basic.--pad-size-full { padding: 32px; }
+
+	/* Corner Radius Config */
+
+	.block.card-basic.--corner-radius { border-radius: 0; }
+	.block.card-basic.--corner-radius-half { border-radius: 16px; }
+	.block.card-basic.--corner-radius-full { border-radius: 32px; }
+
+}
+@media (min-width: 1280px) {
+
+	.block.card-basic {
+		padding: 40px;
+	}
+
+	/* Padding Size Config */
+
+	.block.card-basic, .block.card-basic.--pad-size { padding: 0; }
+	.block.card-basic.--pad-size-half { padding: 20px; }
+	.block.card-basic.--pad-size-full { padding: 40px; }
+
+	/* Corner Radius Config */
+
+	.block.card-basic.--corner-radius { border-radius: 0; }
+	.block.card-basic.--corner-radius-half { border-radius: 20px; }
+	.block.card-basic.--corner-radius-full { border-radius: 40px; }
+
+}
+@media (min-width: 1600px) {
+
+	.block.card-basic {
+		padding: 48px;
+	}
+
+	/* Padding Size Config */
+
+	.block.card-basic, .block.card-basic.--pad-size { padding: 0; }
+	.block.card-basic.--pad-size-half { padding: 24px; }
+	.block.card-basic.--pad-size-full { padding: 48px; }
+
+	/* Corner Radius Config */
+
+	.block.card-basic.--corner-radius { border-radius: 0; }
+	.block.card-basic.--corner-radius-half { border-radius: 24px; }
+	.block.card-basic.--corner-radius-full { border-radius: 48px; }
+
+}

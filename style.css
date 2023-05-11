@@ -1,0 +1,67 @@
+/*
+
+	Theme Name: MLKDEV Parent
+	Theme URI: https://mlk.dev/wordpress-theme
+	Author: mlk.dev
+	Author URI: https://mlk.dev/
+	Description: Core technology for theme development using ACF and Timber.
+	Version: 0.1
+
+*/
+*, *::before, *::after {
+	margin: 0;
+	padding: 0;
+	vertical-align: top;
+	box-sizing: border-box;
+}
+@media (min-width: 0px) {
+
+	html :where(.editor-styles-wrapper) p {
+		margin: 0;
+	}
+	.editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
+		margin: 0 !important;
+		padding: 16px;
+	}
+	.edit-post-visual-editor__post-title-wrapper .editor-post-title {
+		margin: 0 auto !important;
+		max-width: 1600px;
+	}
+
+}
+@media (min-width: 640px) {
+
+	.editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
+		padding: 24px;
+	}
+
+}
+@media (min-width: 960px) {
+
+	.editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
+		padding: 32px;
+	}
+
+}
+@media (min-width: 1280px) {
+
+	.editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
+		padding: 40px;
+	}
+
+}
+@media (min-width: 1600px) {
+
+	.editor-styles-wrapper .edit-post-visual-editor__post-title-wrapper {
+		padding: 48px;
+	}
+
+}
+/* More Space for Admin! */
+@media (min-width: 1920px) {
+
+	.interface-complementary-area {
+		width: 460px;
+	}
+
+}
