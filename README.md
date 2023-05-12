@@ -1,4 +1,4 @@
-# MLKDEV Theme Demo
+# ACF Blocks Theme
 
 This demo theme is made available to the public for demonstration purposes, and has been stripped down to two basic Gutenberg block components; a Section block which can be configured with various visual elements, and Basic Card blocks that can contain content and have basic visual configuration options which can be inserted into Section blocks.
 
