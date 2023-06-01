@@ -4,7 +4,7 @@ This demo theme is made available to the public for demonstration purposes, and 
 
 In order for the theme to work, ACF Pro must be included in the `/includes/acf/` directory. ACF Pro is _**NOT**_ included in this repository as per the ACF Pro rules which can be found [here](https://www.advancedcustomfields.com/resources/including-acf-within-a-plugin-or-theme/).
 
-Field registrations are also made available in each `/includes/blocks/%name%/fields.x.php` file. These can either be imported or the `.x ` portion of the filename can be removed to have the `function.php` autoload the definition at runtime.
+Field registrations are also made available in each `/includes/blocks/%name%/fields.x.php` file. These can either be imported or the `.x ` portion of the filename can be removed to have `functions.php` autoload the definition at runtime.
 
 ---
 
