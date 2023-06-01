@@ -70,13 +70,14 @@
 
 	// Drop default Gutenberg block CSS...
 
-	add_action( 'wp_enqueue_scripts', function() {
+	function mlkdev_theme_dropcoreblocks() {
 
 		wp_dequeue_style( 'global-styles' );
 		wp_dequeue_style( 'wp-block-library' );
 		wp_dequeue_style( 'wp-block-library-theme' );
 
-	}, 100 );
+	}
+	add_action( 'wp_enqueue_scripts', 'mlkdev_theme_dropcoreblocks', 100 );
 
 	// Drop default Gutenberg block skip links...
 
