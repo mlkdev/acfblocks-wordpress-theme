@@ -100,6 +100,7 @@
 	remove_action( 'wp_head', 'wp_oembed_add_discovery_links', 10 );
 
 	// Drop core's edit & manifest head tag junk...
+
 	remove_action( 'wp_head', 'rsd_link' );
 	remove_action( 'wp_head', 'wlwmanifest_link' );
 
@@ -115,7 +116,6 @@
 	// Drop core's generator head tag...
 
 	remove_action( 'wp_head', 'wp_generator' );
-
 
 	// Drop core's duo-tone svg filter junk...
 
