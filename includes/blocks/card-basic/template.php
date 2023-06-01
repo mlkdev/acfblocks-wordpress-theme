@@ -34,6 +34,7 @@
 <div id="<?= esc_attr( $block[ 'id' ] ) ?>" class="<?= esc_attr( implode( ' ', $block_class ) ) ?>" style="<?= esc_attr( implode( ';', $block_style ) ) ?>">
 	<style>
 
+		/* https://caniuse.com/?search=%3Ahas                         */
 		/* This nonsense is required until Firefox supports :has()... */
 		/* Once that time arrives this can be ported into BEM classes */
 
