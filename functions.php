@@ -1,21 +1,40 @@
 <?php
 
-	/* =========== */
-	/* = ACF PRO = */
-	/* =========== */
+	// Including ACF Pro in theme (documentation):
+	// advancedcustomfields.com/resources/including-acf-within-a-plugin-or-theme
 
-	require_once( get_stylesheet_directory().'/includes/acf/acf.php' );
-	add_filter( 'acf/settings/url', function( $url ) {
-		return get_stylesheet_directory_uri().'/includes/acf/';
-	} );
+	// Define path and URL to the ACF plugin...
 
-	add_filter( 'acf/blocks/wrap_frontend_innerblocks', function( $wrap, $name ) {
-		return false;
-	}, 10, 2 );
+	define( 'MLKDEV_THEME_ACF_PATH', get_stylesheet_directory().'/includes/acf/' );
+	define( 'MLKDEV_THEME_ACF_URL', get_stylesheet_directory_uri().'/includes/acf/' );
 
-	// Uncomment for prod...
+	// Include the ACF plugin...
+
+	include_once( MLKDEV_THEME_ACF_PATH.'acf.php' );
+
+	// Customize the url setting to fix incorrect asset URLs...
+
+	function mlkdev_theme_acfsettings( $url ) {
+
+		return MLKDEV_THEME_ACF_URL;
+
+	}
+	add_filter( 'acf/settings/url', 'mlkdev_theme_acfsettings' );
+
+	// (Optional) Hide the ACF admin menu item...
 	// add_filter( 'acf/settings/show_admin', '__return_false' );
-	// add_filter( 'acf/settings/show_updates', '__return_false', 100 );
+
+	// When including the PRO plugin, hide the ACF Updates menu...
+	add_filter( 'acf/settings/show_updates', '__return_false', 100 );
+
+	// Strip the ACF innerblock wrappers...
+
+	function mlkdev_theme_acfnowrap( $wrap, $name ) {
+
+		return false;
+
+	}
+	add_filter( 'acf/blocks/wrap_frontend_innerblocks', 'mlkdev_theme_acfnowrap', 10, 2 );
 
 	// Base theme styles and scripts...
 
@@ -25,69 +44,83 @@
 	wp_register_script( 'mlkdev-theme', get_stylesheet_directory_uri().'/script.js' );
 	wp_enqueue_script( 'mlkdev-theme' );
 
-	// Block editor auto-wiring...
+	// Initialize theme...
 
-	add_filter( 'query_vars', function( $query_vars ) {
+	function mlkdev_theme_init() {
 
-		$query_vars[] = 'route';
-		return $query_vars;
-
-	} );
-
-	add_action( 'init', function() {
+		// Autowiring...
 
 		$css = null;
 		foreach( glob( __DIR__.'/includes/blocks/*' ) as $block ) {
 
-			/* Block Registration */
+			// Block registrations...
+
 			register_block_type( $block );
 
-			/* Field Definitions */
+			// Block field definitions...
+
 			if( file_exists( $block.'/fields.php' ) ) {
 				include( $block.'/fields.php' );
 			}
 
 		}
 
+		// Create a CSS digest route redirect...
+
 		add_rewrite_rule( 'theme-css/?$', 'index.php?route=theme-css', 'top' );
 
-	} );
+	}
+	add_action( 'init', 'mlkdev_theme_init' );
 
-	add_action( 'parse_request', function( $query ) {
+	// Create a CSS digest route...
 
-		// Serve digest of block CSS (or redirect)...
-		if( array_key_exists( 'route', $query->query_vars ) ) {
-			if( !empty( $query->query_vars[ 'route' ] ) ) {
-				if( $query->query_vars[ 'route' ] == 'theme-css' ) {
-					if( empty( $query->request ) ) {
+	function mlkdev_theme_routequery( $query_vars ) {
 
-						// Redirect the index.php format...
-						wp_redirect( site_url( '/theme-css/' ) );
-						exit;
+		$query_vars[] = 'route';
+		return $query_vars;
 
-					} else {
+	}
+	add_filter( 'query_vars', 'mlkdev_theme_routequery' );
 
-						// Output CSS...
+	function mlkdev_theme_routeparse( $query ) {
 
-						$css = file_get_contents( __DIR__.'/style.css' );
+		// Gatekeep checks...
 
-						foreach( glob( __DIR__.'/includes/blocks/*' ) as $block ) {
-							if( file_exists( $block.'/style.css' ) ) {
-								$css .= file_get_contents( $block.'/style.css' );
-							}
-						}
+		if( !array_key_exists( 'route', $query->query_vars ) ) return $query;
+		if( empty( $query->query_vars[ 'route' ] ) )           return $query;
+		if( 'theme-css' != $query->query_vars[ 'route' ] )     return $query;
 
-						header( 'Content-Type: text/css' );
-						die( $css );
+		// Redirect the index.php format...
 
-					}
-				}
-			}
+		if( empty( $query->request ) ) {
+			wp_redirect( site_url( '/theme-css/' ) );
+			exit;
 		}
 
-		return $query;
+		// Check for cached CSS in transient data...
 
-	} );
+		$cached_css = get_transient( 'mlkdev_theme_css' );
+		if( false === $cached_css ) {
+
+			// Cache is expired, refresh it...
+
+			$cached_css = file_get_contents( __DIR__.'/style.css' );
+			foreach( glob( __DIR__.'/includes/blocks/*' ) as $block ) {
+				if( file_exists( $block.'/style.css' ) ) {
+					$cached_css .= file_get_contents( $block.'/style.css' );
+				}
+			}
+			set_transient( 'mlkdev_theme_css', $cached_css, 3600 );
+
+		}
+
+		// Output CSS...
+
+		header( 'Content-Type: text/css' );
+		die( $cached_css );
+
+	}
+	add_action( 'parse_request', 'mlkdev_theme_routeparse' );
 
 	// Drop default Gutenberg block CSS...
 
