@@ -44,6 +44,28 @@
 	wp_register_script( 'mlkdev-theme', get_stylesheet_directory_uri().'/script.js' );
 	wp_enqueue_script( 'mlkdev-theme' );
 
+	// Add a custom size for fluid-width images...
+
+	function mlkdev_theme_imagesizes() {
+
+		if( !current_theme_supports( 'post-thumbnails' ) ) {
+			add_theme_support( 'post-thumbnails' );
+		}
+
+		add_image_size( 'theme-fluidwidth', 1920, 9999, false );
+
+	}
+	add_action( 'after_setup_theme', 'mlkdev_theme_imagesizes' );
+
+	function mlkdev_theme_picksize( $sizes ) {
+
+		return array_merge( $sizes, [
+			'theme-fluidwidth' => __( 'Fluid Width' ),
+		] );
+
+	}
+	add_filter( 'image_size_names_choose', 'mlkdev_theme_picksize' );
+
 	// Initialize theme...
 
 	function mlkdev_theme_init() {
