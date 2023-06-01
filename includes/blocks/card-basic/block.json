@@ -2,6 +2,7 @@
 	"name": "acf/card-basic",
 	"title": "Card: Basic",
 	"description": "",
+	"style": [ "file:./style.css" ],
 	"category": "layout",
 	"icon": "columns",
 	"keywords": [ "card", "basic" ],

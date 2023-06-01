@@ -65,62 +65,8 @@
 
 		}
 
-		// Create a CSS digest route redirect...
-
-		add_rewrite_rule( 'theme-css/?$', 'index.php?route=theme-css', 'top' );
-
 	}
 	add_action( 'init', 'mlkdev_theme_init' );
-
-	// Create a CSS digest route...
-
-	function mlkdev_theme_routequery( $query_vars ) {
-
-		$query_vars[] = 'route';
-		return $query_vars;
-
-	}
-	add_filter( 'query_vars', 'mlkdev_theme_routequery' );
-
-	function mlkdev_theme_routeparse( $query ) {
-
-		// Gatekeep checks...
-
-		if( !array_key_exists( 'route', $query->query_vars ) ) return $query;
-		if( empty( $query->query_vars[ 'route' ] ) )           return $query;
-		if( 'theme-css' != $query->query_vars[ 'route' ] )     return $query;
-
-		// Redirect the index.php format...
-
-		if( empty( $query->request ) ) {
-			wp_redirect( site_url( '/theme-css/' ) );
-			exit;
-		}
-
-		// Check for cached CSS in transient data...
-
-		$cached_css = get_transient( 'mlkdev_theme_css' );
-		if( false === $cached_css ) {
-
-			// Cache is expired, refresh it...
-
-			$cached_css = file_get_contents( __DIR__.'/style.css' );
-			foreach( glob( __DIR__.'/includes/blocks/*' ) as $block ) {
-				if( file_exists( $block.'/style.css' ) ) {
-					$cached_css .= file_get_contents( $block.'/style.css' );
-				}
-			}
-			set_transient( 'mlkdev_theme_css', $cached_css, 3600 );
-
-		}
-
-		// Output CSS...
-
-		header( 'Content-Type: text/css' );
-		die( $cached_css );
-
-	}
-	add_action( 'parse_request', 'mlkdev_theme_routeparse' );
 
 	// Drop default Gutenberg block CSS...
 

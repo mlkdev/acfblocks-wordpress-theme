@@ -2,6 +2,7 @@
 	"name": "acf/section",
 	"title": "Section",
 	"description": "",
+	"style": [ "file:./style.css" ],
 	"category": "layout",
 	"icon": "align-wide",
 	"keywords": [ "section" ],
