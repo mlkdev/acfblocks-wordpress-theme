@@ -4,6 +4,10 @@
 		padding: 16px;
 		width: 100%;
 	}
+	.block.card-basic img.fluid-width {
+		width: 100% !important;
+		height: auto !important;
+	}
 
 	/* Padding Size Config */
 
