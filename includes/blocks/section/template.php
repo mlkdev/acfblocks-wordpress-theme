@@ -27,6 +27,9 @@
 			$section_style[] = 'background-image: url('.$fields[ 'background_asset' ][ 'url' ].')';
 		}
 	}
+	if( !empty( $fields[ 'content_color' ] ) ) {
+		$section_style[] = 'color: '.$fields[ 'content_color' ];
+	}
 
 	// Block instance inline styles (div .bg-overlay)...
 

@@ -24,7 +24,12 @@
 	// Block instance inline styles (div .block.card-basic)...
 
 	$block_style = [];
-	if( !empty( $fields[ 'bg_color' ] ) ) $block_style[] = 'background-color:'.$fields[ 'bg_color' ];
+	if( !empty( $fields[ 'bg_color' ] ) ) {
+		$block_style[] = 'background-color:'.$fields[ 'bg_color' ];
+	}
+	if( !empty( $fields[ 'content_color' ] ) ) {
+		$block_style[] = 'color: '.$fields[ 'content_color' ];
+	}
 
 	// Block ID shortcut...
 
