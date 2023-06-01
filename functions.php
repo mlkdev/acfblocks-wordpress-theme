@@ -38,7 +38,7 @@
 
 	// Base theme styles and scripts...
 
-	wp_register_style( 'mlkdev-theme', '/theme-css/' );
+	wp_register_style( 'mlkdev-theme', get_stylesheet_directory_uri().'/style.css' );
 	wp_enqueue_style( 'mlkdev-theme' );
 
 	wp_register_script( 'mlkdev-theme', get_stylesheet_directory_uri().'/script.js' );
