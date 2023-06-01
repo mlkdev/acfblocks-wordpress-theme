@@ -39,20 +39,20 @@
 	}
 
 ?>
-<section id="<?= esc_html( $block[ 'id' ] ) ?>" class="<?= esc_html( implode( ' ', $block_class ) ) ?>" style="<?= esc_html( implode( ';', $section_style ) ) ?>">
+<section id="<?= esc_attr( $block[ 'id' ] ) ?>" class="<?= esc_attr( implode( ' ', $block_class ) ) ?>" style="<?= esc_attr( implode( ';', $section_style ) ) ?>">
 
 	<?php if( !empty( $fields[ 'background_asset' ][ 'url' ] ) ) : ?>
 		<?php if( $fields[ 'background_asset' ][ 'type' ] == 'video' ) : ?>
 			<div class="bg-video">
 				<video autoplay muted loop>
-					<source src="<?= esc_url( $fields[ 'background_asset' ][ 'url' ] ) ?>" type="<?= esc_html( $fields[ 'background_asset' ][ 'mime_type' ] ) ?>" />
+					<source src="<?= esc_url( $fields[ 'background_asset' ][ 'url' ] ) ?>" type="<?= esc_attr( $fields[ 'background_asset' ][ 'mime_type' ] ) ?>" />
 				</video>
 			</div>
 		<?php endif; ?>
 	<?php endif; ?>
 
 	<?php if( !empty( $overlay_style ) ) : ?>
-		<div class="bg-overlay" style="<?= esc_html( implode( ';', $overlay_style ) ) ?>"></div>
+		<div class="bg-overlay" style="<?= esc_attr( implode( ';', $overlay_style ) ) ?>"></div>
 	<?php endif; ?>
 
 	<div class="content">
