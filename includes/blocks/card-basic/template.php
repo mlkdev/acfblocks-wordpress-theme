@@ -169,6 +169,8 @@
 
 	</style>
 	<div class="interior">
-		<InnerBlocks />
+
+		<?= !empty( $fields[ 'content' ] ) ? $fields[ 'content' ] : null ?>
+
 	</div>
 </div>
